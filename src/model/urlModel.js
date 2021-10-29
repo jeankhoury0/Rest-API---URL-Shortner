@@ -7,7 +7,11 @@ const URLSchema = new mongoose.Schema({
     date: {
         type: String,
         default: Date.now,
-    }
+    },
+    isSpecial:{
+        type: Boolean,
+        default: false,
+    } 
 })
 
 module.exports = mongoose.model('Url', URLSchema);
