@@ -10,7 +10,7 @@
  
  const Url = require('../model/urlModel')
  //TODO
- const baseURL = 'http:localhost:5000'
+ const baseURL = process.env.BASE_URL
  
  router.post('/shorten', async(req, res) => {
      const {
@@ -22,8 +22,8 @@
      }
  
      const urlCode = shortid.generate();
-     
-     if(validUrl.isUri(longUrl)){
+
+     if(validUrl.isUri(longUrl)) {
          try {
              let url = await Url.findOne({
                  longUrl

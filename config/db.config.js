@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
 
 // declare a Database string URI
-const DB_URI = 'mongodb+srv://testboy:mh6rf7hOK3PeeFOK@cluster0.qvitu.mongodb.net/UrlSolverTest?retryWrites=true&w=majority'
-
+const DB_URI = process.env.DB_URL;
 // establishing a database connection
 mongoose.connect(DB_URI, {
     useNewUrlParser: true,
