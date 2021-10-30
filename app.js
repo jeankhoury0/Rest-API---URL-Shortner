@@ -1,6 +1,7 @@
 const express = require('express');  
-const app = express()
-require('dotenv').config()
+const cors = require('cors');
+const app = express();
+require('dotenv').config();
 
 //DB config
 const connection = require('./config/db.config.js');
@@ -14,6 +15,7 @@ app.post("/welcome", auth, (req, res) => {
   });
 
 //Routes config
+app.use(cors())
 app.use(express.json({
     extended: false
 }))
