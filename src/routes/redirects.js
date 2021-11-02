@@ -1,8 +1,7 @@
 const express = require('express');
-
 const router = express.Router();
 const Url = require('../model/urlModel');
-
+const {increaseCounter} = require('../controller/url-redirection')
 // : app.get(/:code)
 
 // @route       GET /:code

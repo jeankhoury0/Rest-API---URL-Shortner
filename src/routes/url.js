@@ -2,16 +2,24 @@ const express = require('express');
 const validUrl = require('valid-url')
 const shortid = require('shortid')
 const router = express.Router();
-const Url = require('../model/urlModel')
-const baseURL = process.env.BASE_URL
+const Url = require('../model/urlModel');
+const User = require('../model/userModel');
+const {getAllURLForUser} = require('../controller/url-query')
+const baseURL = process.env.BASE_URL;
+const authHelper = require('../helper/authHelper')
 
 router.post('/shorten', async (req, res) => {
-    
+
     var isSpecial = true;
     var {
         longUrl,
         urlCode,
     } = req.body;
+    const decryptedID = authHelper.decryptUserId(req.headers["x-access-token"]) 
+    console.log(decryptedID);
+    const userId = (await User.findOne(
+        {"_id":decryptedID}
+        ))
 
     // check base url if valid using the validUrl.isUri method
     if (!validUrl.isUri(baseURL)) {
@@ -31,8 +39,6 @@ router.post('/shorten', async (req, res) => {
         urlCode = shortid.generate();
         isSpecial = false;
     }
-
-
     if (validUrl.isUri(longUrl)) {
         try {
             let url = await Url.findOne({
@@ -44,14 +50,15 @@ router.post('/shorten', async (req, res) => {
             } else {
                 //join the generated short code to base url
                 const ShortUrl = baseURL + '/' + urlCode;
-
+                console.log(userId);
                 //save to DB
                 url = new Url({
                     longUrl,
                     ShortUrl,
                     urlCode,
                     date: new Date(),
-                    isSpecial
+                    isSpecial,
+                    CreatedBy: userId,
                 })
                 await url.save();
                 res.json(url);
@@ -64,6 +71,14 @@ router.post('/shorten', async (req, res) => {
     } else {
         res.status(400).json('invalid url');
     }
+})
+
+
+router.get('/allURLforUser' , async (req, res) => {
+    const Usertoken = req.headers["x-access-token"]
+    var urlQuery = await getAllURLForUser(Usertoken);
+    res.json(urlQuery);
+
 })
 
 module.exports = router;
