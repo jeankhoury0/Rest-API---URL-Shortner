@@ -1,7 +1,7 @@
-#About
+# About
 Web API to shorten URL
 
-#API Documentation
+# API Documentation
 [Postman Document](https://documenter.getpostman.com/view/11722123/UV5f8uG4)
 
 ## Creating an Account
