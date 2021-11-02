@@ -5,7 +5,8 @@
     "main": "app.js",
     "scripts": {
         "start": "node index.js",
-        "test": "mocha"
+        "test": "mocha",
+        "watch": "nodemon index.js"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
@@ -22,5 +23,8 @@
         "shortid": "^2.2.16",
         "supertest": "^6.1.6",
         "valid-url": "^1.0.9"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.14"
     }
 }
