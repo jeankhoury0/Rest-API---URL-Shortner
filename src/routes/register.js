@@ -1,55 +1,9 @@
 const express = require('express');
+const registerController = require('../controller/registerController')
 const router = express.Router();
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const User = require('../model/userModel');
 
 router.post('/', async(req, res) =>{
-  try{
-
-
-    const { 
-        firstName, 
-        lastName,
-        email, 
-        password 
-    } = req.body;
-
-    //user input validatiom
-    if (!(email && password && firstName && lastName)){
-        res.status(400).send("all input required");
-    }
-    //is user existant?
-    const oldUser = await User.findOne({email});
-    if (oldUser){
-        return res.status(409).send("User Already Exist. Please Login"); 
-    }
-
-    encryptedPassword = await bcrypt.hash(password, 10);
-
-    //create newUser
-    const user = await User.create({
-        firstName,
-        lastName,
-        email: email.toLowerCase(), // sanitize: convert email to lowercase
-        password: encryptedPassword,
-      });
-    
-    //token creation
-    const token = jwt.sign(
-        { user_id: user._id, email },
-        process.env.TOKEN_KEY,
-        {
-          expiresIn: "2h",
-        }
-      );
-
-    user.token = token;
-
-    res.status(201).json(user);
-  }catch(err){
-    res.status(500).json(err);
-  }
+  return await registerController(req,res);
 });
 
 module.exports = router;

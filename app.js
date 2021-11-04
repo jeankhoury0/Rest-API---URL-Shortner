@@ -22,4 +22,11 @@ app.use('/register', require("./src/routes/register"));
 app.use('/login', require("./src/routes/login"));
 app.use('/email', require("./src/routes/email"));
 
+//if testing mode is enable we create mock data and clear db
+if(process.env.NODE_ENV == "TEST"){    
+    const seed = require('./config/seed/seedapp')
+    console.log("creating the dummy data")
+    seed();
+}
+
 module.exports = app;
