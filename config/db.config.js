@@ -7,6 +7,9 @@ if(process.env.NODE_ENV == "TEST"){
     DB_URI = process.env.DB_TEST_URL;
     console.log("Testing mode successfull")
 }
+if(process.env.NODE_ENV=="LOCALHOST"){
+    DB_URI = process.env.DB_LOCAL_URL;
+}
 console.log(DB_URI);
 mongoose.connect(DB_URI, {
     useNewUrlParser: true,
@@ -15,11 +18,6 @@ mongoose.connect(DB_URI, {
 
 const connection = mongoose.connection
 
-const droppingDB = async () => {
-    console.log(await connection.dropDatabase())
-}
-
-
 
 // export the connection object
-module.exports = connection, droppingDB
+module.exports = connection

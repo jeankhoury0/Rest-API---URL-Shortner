@@ -2,11 +2,16 @@
     "name": "lat001",
     "version": "1.1.1",
     "description": "Url redirect manager",
+    "apidoc": {
+        "title": "001Lat API Doc",
+        "url": "https://api.001.lat/"
+    },
     "main": "app.js",
     "scripts": {
         "start": "node index.js",
         "test": "NODE_ENV=TEST mocha --timeout 10000",
-        "mock": "NODE_ENV=TEST node config/seed/seedapp.js"
+        "mock": "NODE_ENV=TEST node config/seed/seedapp.js",
+        "doc": "apidoc -i src/ -o doc/"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
@@ -25,5 +30,8 @@
         "shortid": "^2.2.16",
         "supertest": "^6.1.6",
         "valid-url": "^1.0.9"
+    },
+    "devDependencies": {
+        "should": "^13.2.3"
     }
 }

@@ -76,9 +76,7 @@ router.post('/shorten', async (req, res) => {
 
 router.get('/allURLforUser' , async (req, res) => {
     const Usertoken = req.headers["x-access-token"]
-    var urlQuery = await getAllURLForUser(Usertoken);
-    res.json(urlQuery);
-
+    res.json(await getAllURLForUser(Usertoken));
 })
 
 module.exports = router;

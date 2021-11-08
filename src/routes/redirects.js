@@ -1,26 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Url = require('../model/urlModel');
-const {increaseCounter} = require('../controller/url-redirection')
-// : app.get(/:code)
+const redirectsController = require('../controller/redirectsController') 
 
-// @route       GET /:code
-// @description    Redirect to the long/original URL 
+router.get('/', (req,res)=>{
+        // For default adress
+        return res.redirect("https://short.001.lat/")
+});
+
 router.get('/:code', async (req, res) => {
-    try {
-        const url = await Url.findOne({
-            urlCode: req.params.code,
-        })
-        if (url) {
-            return res.redirect(url.longUrl)
-        } else {
-            return res.status(404).json('No Url Found');
-        }
-    }
-    catch (err) {
-        console.log(err)
-        res.status(500).json('Server Error')
-    }
+        const a = await redirectsController(req, res)
+        // // return res.redirect(); 
 });
 
 module.exports = router;

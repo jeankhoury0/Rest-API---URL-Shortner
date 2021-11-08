@@ -8,9 +8,9 @@ const jwt = require("jsonwebtoken");
    * @returns {String} The decoded user_id
    */
 function decryptUserId(token){
-    const decoded = jwt.verify(token, process.env.TOKEN_KEY);  
-    return decoded.userId
+    const decoded = jwt.verify(token, process.env.TOKEN_KEY);
+    return decoded.user_id
   }
 
 
-exports.decryptUserId = decryptUserId;
+module.exports = {decryptUserId};

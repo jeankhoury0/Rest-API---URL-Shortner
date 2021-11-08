@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = process.env;
+const User = require('../model/userModel');
 
 const verifyToken = (req, res, next) =>{
   const token = req.headers["x-access-token"];
@@ -13,7 +14,7 @@ const verifyToken = (req, res, next) =>{
       } catch (err) {
         return res.status(401).send("Invalid Token");
       }
-      return next();
+        return next();
     };
-    
+
     module.exports = verifyToken;

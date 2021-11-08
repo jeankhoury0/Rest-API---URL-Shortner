@@ -5,7 +5,6 @@ const authHelper= require('../helper/authHelper')
 
 const getAllURLForUser = async(userToken) =>{
     var extractedUID = authHelper.decryptUserId(userToken);
-    console.log(extractedUID);
     const userID= (await User.findOne(
         {"_id": extractedUID}
     ))

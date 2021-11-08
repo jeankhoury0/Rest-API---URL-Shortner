@@ -16,6 +16,7 @@ app.use(cors())
 app.use(express.json({
     extended: false
 }))
+app.use('/user', auth, require('./src/routes/user'));
 app.use('/', require('./src/routes/redirects'));
 app.use('/url',auth, require('./src/routes/url'));
 app.use('/register', require("./src/routes/register"));
