@@ -8,8 +8,8 @@ router.get('/', (req,res)=>{
 });
 
 router.get('/:code', async (req, res) => {
-        const a = await redirectsController(req, res)
-        // // return res.redirect(); 
+        const a = await redirectsController(req,res).res
+        // return res.redirect("https://short.001.lat/")
 });
 
 module.exports = router;

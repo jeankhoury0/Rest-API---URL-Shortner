@@ -3,7 +3,7 @@
  * Possible messages
  * 
  */
-const Url = require('../model/userModel');
+const Url = require('../model/urlModel');
 
 /**
  * 
@@ -16,10 +16,10 @@ const redirects = async(req, res) => {
             urlCode: req.params.code,
         })
         if (url) {
-            return res.json({"url":url.longUrl})
+            return res.redirect(url.longUrl)
         } else {
             // res.status(404).json('No Url Found');
-            return res.json({"url":"https://short.001.lat/"})
+            return res.redirect("https://short.001.lat/")
         }
     }
     catch (err) {
