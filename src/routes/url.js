@@ -16,7 +16,6 @@ router.post('/shorten', async (req, res) => {
         urlCode,
     } = req.body;
     const decryptedID = authHelper.decryptUserId(req.headers["x-access-token"]) 
-    console.log(decryptedID);
     const userId = (await User.findOne(
         {"_id":decryptedID}
         ))
@@ -50,7 +49,6 @@ router.post('/shorten', async (req, res) => {
             } else {
                 //join the generated short code to base url
                 const ShortUrl = baseURL + '/' + urlCode;
-                console.log(userId);
                 //save to DB
                 url = new Url({
                     longUrl,

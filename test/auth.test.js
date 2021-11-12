@@ -37,7 +37,7 @@ describe('POST /register', function(){
   before(function(){
     mongoose.connection.db.dropDatabase();
   })
-  it('return 200 and token if user creation is valid' , function(done){
+  it('return 201 and token if user creation is valid' , function(done){
     request(app)
     .post('/register')
     .send({

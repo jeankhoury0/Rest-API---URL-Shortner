@@ -58,6 +58,7 @@ describe('POST /url/shorten', function() {
                 expect(res.body).to.have.property('urlCode')
                 expect(res.body).to.have.property('longUrl')
                 expect(res.body).to.have.property('CreatedBy')
+                expect(res.body.CreatedBy).not.to.be.null;
                 done()
             })
         });

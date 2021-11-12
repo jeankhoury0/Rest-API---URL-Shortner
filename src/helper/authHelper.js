@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
    */
 function decryptUserId(token){
     const decoded = jwt.verify(token, process.env.TOKEN_KEY);
-    return decoded.user_id
+    return decoded.userId
   }
 
 
