@@ -43,10 +43,6 @@ router.post('/shorten', async (req, res) => {
             let url = await Url.findOne({
                 longUrl
             })
-            if (url) {
-                //case url alraedy in DB
-                res.json(url);
-            } else {
                 //join the generated short code to base url
                 const ShortUrl = baseURL + '/' + urlCode;
                 //save to DB
@@ -61,7 +57,7 @@ router.post('/shorten', async (req, res) => {
                 await url.save();
                 res.json(url);
             }
-        }
+        
         catch (err) {
             console.log(err);
             res.status(500).json('Server Error')
