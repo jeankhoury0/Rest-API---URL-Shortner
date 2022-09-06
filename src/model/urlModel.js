@@ -14,11 +14,11 @@ const URLSchema = new Schema({
         type: Boolean,
         default: false,
     },
-    CreatedBy:{
+    createdBy:{
         type: Schema.Types.ObjectId, 
         ref: 'User'
     },
-    ClickCounter: {
+    clickCounter: {
         type: Number, 
         default: 0
     }

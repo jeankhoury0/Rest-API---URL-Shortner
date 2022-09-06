@@ -18,7 +18,7 @@ const register = async(req,res) =>{
             return res.status(400).send("Please enter an email and a password");
             
         }
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email: email.toLowerCase() });
         if (user && (await bcrypt.compare(password, user.password))) {
             // Create token
             const token = jwt.sign(

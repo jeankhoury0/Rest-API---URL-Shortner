@@ -14,7 +14,7 @@ const getAllURLForUser = async(userToken) =>{
         return;
     }
     const allURL = (await Url.find(
-            {"CreatedBy":userID}
+            {"createdBy":userID}
     ))
     return allURL;
     

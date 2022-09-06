@@ -3,7 +3,7 @@ const registerController = require('../controller/registerController')
 const router = express.Router();
 
 /**
- * @api {post} /reguster Register a user to obtain a token
+ * @api {post} /register Register a user to obtain a token
  * @apiName PostLogin
  * @apiGroup User
  * 

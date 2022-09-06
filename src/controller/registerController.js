@@ -4,21 +4,20 @@ const User = require('../model/userModel');
 
 const register = async(req, res)=>{
     try{
-
         const { 
             firstName, 
             lastName,
             email, 
             password 
         } = req.body;
-    
+
         //user input validatiom
         if (!(email && password && firstName && lastName)){
           return res.status(400).send("all input required");
         }
         //is user existant?
-        const oldUser = await User.findOne({email});
-        if (oldUser){
+        const oldUser = await User.findOne({email: email.toLowerCase()});
+        if (await oldUser){
           return res.status(409).send("User Already Exist. Please Login"); 
         }
     
@@ -37,7 +36,7 @@ const register = async(req, res)=>{
             { user_id: user._id, email },
             process.env.TOKEN_KEY,
             {
-              expiresIn: "2h",
+              expiresIn: "12h",
             }
           );
     

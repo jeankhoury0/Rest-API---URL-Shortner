@@ -54,13 +54,13 @@ describe('POST /register', function(){
     .catch(err=>done(err));
   });
 
-  it('return 409 when user already exist' , function(done){
+  it('return 409 when user already exist, even if email is upperCase' , function(done){
     request(app)
     .post('/register')
     .send({
         "firstName": "John",
         "lastName": "Doe",
-        "email": "john.doe@gmail.com",
+        "email": "John.Doe@gmail.com",
         "password": "1234"
     })
     .expect(409, done);
