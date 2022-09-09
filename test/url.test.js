@@ -57,7 +57,7 @@ describe('POST /url/shorten', function() {
                 expect(res.statusCode).to.equal(200)
                 expect(res.body).to.have.property('urlCode')
                 expect(res.body).to.have.property('longUrl')
-                expect(res.body).to.have.property('CreatedBy')
+                expect(res.body).to.have.property('createdBy')
                 expect(res.body.CreatedBy).not.to.be.null;
                 done()
             })
@@ -76,7 +76,7 @@ describe('POST /url/shorten', function() {
                 expect(res.statusCode).to.equal(200)
                 expect(res.body).to.have.property('urlCode')
                 expect(res.body).to.have.property('longUrl')
-                expect(res.body).to.have.property('CreatedBy')
+                expect(res.body).to.have.property('createdBy')
                 done()
             })
          });

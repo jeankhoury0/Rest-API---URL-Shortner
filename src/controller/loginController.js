@@ -29,7 +29,14 @@ const register = async(req,res) =>{
                 }
             );
             user.token = token;
-            return res.status(200).json(user);
+            const user_no_password ={
+                "firstName" :user.firstName,
+                "lastName": user.lastName,
+                "email": user.email,
+                "token": user.token
+            } 
+
+            return res.status(200).json(user_no_password);
         }
         return res.status(401).send("Invalid Credentials. If you dont have an account please register");
         

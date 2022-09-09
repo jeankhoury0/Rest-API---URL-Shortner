@@ -74,6 +74,11 @@ describe('POST /login', function() {
   it('return 400 if request is empty', function(done) {
     request(app)
       .post('/login')
+      .send({
+        "email":"not-a-valid-user@gmail.com" , 
+        "password":"000000"
+      })
+      .send()
       .expect(400, done);
   });
   it('return 401 if username/password invalid', function(done){
